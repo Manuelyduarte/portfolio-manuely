@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manuely Duarte — Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --amarelo: #F5C518;
+    --amarelo-escuro: #C9991A;
+    --vermelho: #C0392B;
+    --vermelho-dark: #922B21;
+    --terracota: #A0522D;
+    --bege: #F5EDD8;
+    --bege-escuro: #E8D5B0;
+    --marrom: #4A2C17;
+    --marrom-claro: #7A4A2A;
+    --creme: #FDF6E3;
+    --cinza: #5A4A3A;
+    --texto: #2C1810;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--creme);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(253,246,227,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--bege-escuro);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--marrom);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--vermelho); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--marrom);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem 5rem;
+    position: relative;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    top: 0; right: -60px;
+    width: 120px;
+    height: 100%;
+    background: var(--marrom);
+    transform: skewX(-4deg);
+    z-index: 1;
+  }
+
+  .hero-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amarelo);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--amarelo);
+  }
+
+  .hero-nome {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    color: var(--creme);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-nome em {
+    color: var(--amarelo);
+    font-style: italic;
+  }
+
+  .hero-cargo {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--bege-escuro);
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #C4B09A;
+    max-width: 380px;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--amarelo);
+    color: var(--marrom);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn-primary:hover {
+    background: var(--vermelho);
+    color: var(--creme);
+    transform: translateY(-2px);
+  }
+
+  .hero-right {
+    background: var(--bege);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem 4rem 4rem 5rem;
+    position: relative;
+    z-index: 0;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-left: 4px solid var(--amarelo);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--vermelho);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cinza);
+  }
+
+  .hero-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .skill-pill {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1.5px solid var(--marrom-claro);
+    color: var(--marrom);
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  .skill-pill:hover {
+    background: var(--marrom);
+    color: var(--amarelo);
+    border-color: var(--marrom);
+  }
+
+  /* SOBRE */
+  .sobre {
+    padding: 6rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    align-items: start;
+    background: white;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--vermelho);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--bege-escuro);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.2;
+    color: var(--marrom);
+  }
+
+  .sobre-texto {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--cinza);
+  }
+
+  .sobre-texto p + p { margin-top: 1.2rem; }
+
+  .sobre-destaque {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--terracota);
+    border-left: 3px solid var(--amarelo);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    line-height: 1.6;
+  }
+
+  /* EXPERIÊNCIA */
+  .experiencia {
+    padding: 6rem 5rem;
+    background: var(--creme);
+  }
+
+  .exp-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--amarelo), var(--vermelho), var(--terracota));
+  }
+
+  .exp-item {
+    position: relative;
+    padding: 0 0 3rem 2.5rem;
+    animation: fadeIn 0.5s ease both;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 0.4rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--amarelo);
+    border: 3px solid var(--creme);
+    box-shadow: 0 0 0 2px var(--amarelo);
+  }
+
+  .exp-periodo {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--vermelho);
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-empresa {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--marrom);
+    margin-bottom: 0.2rem;
+  }
+
+  .exp-cargo {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--terracota);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .exp-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--cinza);
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .exp-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    background: var(--bege);
+    color: var(--marrom-claro);
+    border-radius: 2px;
+  }
+
+  /* CASES */
+  .cases {
+    padding: 6rem 5rem;
+    background: var(--marrom);
+  }
+
+  .cases .section-label { color: var(--amarelo); }
+  .cases .section-label::after { background: rgba(255,255,255,0.15); }
+  .cases .section-title { color: var(--creme); }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .case-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--amarelo);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+
+  .case-card:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-4px);
+  }
+
+  .case-card:hover::before { transform: scaleY(1); }
+
+  .case-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(245,197,24,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .case-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--amarelo);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .case-titulo {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--creme);
+    margin-bottom: 0.8rem;
+  }
+
+  .case-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #C4B09A;
+  }
+
+  /* MARCAS */
+  .marcas {
+    padding: 5rem 5rem;
+    background: var(--bege);
+    text-align: center;
+  }
+
+  .marcas-intro {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-bottom: 2.5rem;
+  }
+
+  .marcas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .marca-badge {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    padding: 0.7rem 1.6rem;
+    border: 1.5px solid var(--marrom-claro);
+    color: var(--marrom);
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+    cursor: default;
+  }
+
+  .marca-badge:hover {
+    background: var(--marrom);
+    color: var(--amarelo);
+    border-color: var(--marrom);
+    transform: scale(1.03);
+  }
+
+  /* HABILIDADES */
+  .habilidades {
+    padding: 6rem 5rem;
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .hab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .hab-item {
+    padding: 1.5rem;
+    border: 1px solid var(--bege-escuro);
+    transition: all 0.25s;
+  }
+
+  .hab-item:hover {
+    border-color: var(--amarelo);
+    background: var(--creme);
+  }
+
+  .hab-icone {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .hab-nome {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--marrom);
+    margin-bottom: 0.3rem;
+  }
+
+  .hab-sub {
+    font-size: 0.75rem;
+    color: var(--cinza);
+    line-height: 1.5;
+  }
+
+  /* CONTATO */
+  .contato {
+    padding: 6rem 5rem;
+    background: var(--vermelho);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .contato .section-label { color: var(--amarelo); }
+  .contato .section-label::after { background: rgba(255,255,255,0.2); }
+  .contato .section-title { color: white; }
+
+  .contato-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.8);
+    margin-top: 1rem;
+  }
+
+  .contato-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contato-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s;
+    letter-spacing: 0.02em;
+  }
+
+  .contato-link:hover {
+    background: var(--amarelo);
+    color: var(--marrom);
+    border-color: var(--amarelo);
+    transform: translateX(8px);
+  }
+
+  .contato-link span:first-child {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 5rem;
+    background: var(--marrom);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: #C4B09A;
+  }
+
+  footer strong {
+    color: var(--amarelo);
+    font-weight: 500;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in { animation: fadeIn 0.6s ease both; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left::after { display: none; }
+    .hero-left, .hero-right { padding: 5rem 2rem 3rem; }
+    .sobre, .habilidades, .exp-header, .contato { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 2rem; }
+    .experiencia, .cases, .marcas { padding: 4rem 2rem; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .hab-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Manuely Duarte</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Portfólio Profissional</div>
+    <h1 class="hero-nome">Manuely<br><em>Duarte</em></h1>
+    <p class="hero-cargo">Analista de Marketing · Estrategista de Conteúdo</p>
+    <p class="hero-desc">
+      Profissional de marketing com 3–5 anos de experiência em agências e empresas, com foco em resultados mensuráveis, gestão de marcas e estratégia de conteúdo.
+    </p>
+    <a href="#cases" class="btn-primary">Ver meus cases →</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">+35%</div>
+        <div class="stat-label">Aumento de leads — Ag. Cíntia</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">+20%</div>
+        <div class="stat-label">Leads em conta B2B</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Marcas gerenciadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Empresas e agências</div>
+      </div>
+    </div>
+    <div class="hero-skills">
+      <span class="skill-pill">Redes Sociais</span>
+      <span class="skill-pill">Copywriting</span>
+      <span class="skill-pill">SEO</span>
+      <span class="skill-pill">Branding</span>
+      <span class="skill-pill">Tráfego Pago</span>
+      <span class="skill-pill">Analytics</span>
+      <span class="skill-pill">Automação</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div>
+    <div class="section-label">Quem sou eu</div>
+    <h2 class="section-title">Uma profissional que conecta estratégia a resultado</h2>
+  </div>
+  <div class="sobre-texto">
+    <p>
+      Comecei minha trajetória no marketing digital com vontade de aprender e crescer rápido — e foi exatamente isso que aconteceu. Passei por agências, trabalhei com empreendedores de nichos variados e mergulhei no universo corporativo de uma importadora, onde assumi responsabilidades que iam desde a criação de catálogos até a gestão completa do setor de marketing.
+    </p>
+    <div class="sobre-destaque">
+      "De estagiária a responsável pelo setor — cada experiência me moldou como estrategista."
+    </div>
+    <p>
+      Tenho experiência prática com gestão de redes sociais, criação de conteúdo e roteiros, copywriting para blog e vídeo, automação de marketing, branding e identidade de marca, organização de feiras e eventos e relacionamento com times comerciais.
+    </p>
+    <p>
+      Sou movida por dados, criatividade e conexão humana — e acredito que um bom marketing é aquele que transforma negócios de verdade.
+    </p>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA -->
+<section class="experiencia" id="experiencia">
+  <div class="exp-header">
+    <div>
+      <div class="section-label">Trajetória</div>
+      <h2 class="section-title">Experiência profissional</h2>
+    </div>
+    <p style="font-size:0.95rem;line-height:1.8;color:var(--cinza);">Uma trajetória construída com consistência, crescimento rápido e múltiplos aprendizados em diferentes cenários do marketing.</p>
+  </div>
+
+  <div class="timeline">
+
+    <div class="exp-item">
+      <div class="exp-periodo">Experiência mais recente</div>
+      <div class="exp-empresa">Imporiente</div>
+      <div class="exp-cargo">Estagiária → Auxiliar → Assistente de Marketing</div>
+      <div class="exp-desc">
+        Começou criando catálogos institucionais e foi efetivada rapidamente. Assumiu a gestão das redes sociais, atualização de site, copywriting (roteiros para vídeo, blog), automação de marketing e relacionamento com representantes. Ficou à frente do setor, liderando o time e participando de feiras como estrategista. Foi promovida a Assistente de Marketing, responsável pela parte estratégica e de captação, alinhada à coordenadora de marketing.
+      </div>
+      <div class="exp-tags">
+        <span class="exp-tag">Gestão de redes</span>
+        <span class="exp-tag">Copywriting</span>
+        <span class="exp-tag">Automação</span>
+        <span class="exp-tag">Feiras</span>
+        <span class="exp-tag">Liderança</span>
+        <span class="exp-tag">Estratégia</span>
+        <span class="exp-tag">Site</span>
+        <span class="exp-tag">Blog</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-periodo">Agência</div>
+      <div class="exp-empresa">Apollo — Agência de Marketing e Publicidade</div>
+      <div class="exp-cargo">Marketing Digital</div>
+      <div class="exp-desc">
+        Atendeu contas distintas: Dra. Cris (profissional liberal na área HOF) e a marca Milele (e-commerce de joias). Trabalhou com posicionamento, produção de conteúdo e estratégias específicas para cada nicho.
+      </div>
+      <div class="exp-tags">
+        <span class="exp-tag">Profissional Liberal</span>
+        <span class="exp-tag">E-commerce</span>
+        <span class="exp-tag">Joias</span>
+        <span class="exp-tag">Conteúdo</span>
+        <span class="exp-tag">Posicionamento</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-periodo">Agência</div>
+      <div class="exp-empresa">Agência Cíntia Nascimento</div>
+      <div class="exp-cargo">Captação e Geração de Leads</div>
+      <div class="exp-desc">
+        Focou na captação de leads para diferentes empreendedores, alcançando crescimento de +35% nos resultados. Trabalhou com estratégias de inbound, tráfego e funil de conversão para negócios variados.
+      </div>
+      <div class="exp-tags">
+        <span class="exp-tag">Geração de leads</span>
+        <span class="exp-tag">+35% leads</span>
+        <span class="exp-tag">Multiclientes</span>
+        <span class="exp-tag">Funil de conversão</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases" id="cases">
+  <div class="section-label">Resultados</div>
+  <h2 class="section-title">Cases de sucesso</h2>
+
+  <div class="cases-grid">
+
+    <div class="case-card">
+      <div class="case-icon">📈</div>
+      <div class="case-num">+35%</div>
+      <div class="case-titulo">Captação de leads — Agência Cíntia Nascimento</div>
+      <div class="case-desc">Estratégia de geração de leads aplicada a múltiplos empreendedores com diferentes nichos. Crescimento consistente de 35% no volume de leads qualificados por meio de otimização de funil e produção de conteúdo estratégico.</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-icon">🏢</div>
+      <div class="case-num">+20%</div>
+      <div class="case-titulo">Leads B2B — Segurança do Trabalho</div>
+      <div class="case-desc">Resultado obtido em um nicho técnico B2B: empresa de segurança do trabalho. Crescimento de 20% na geração de leads com estratégias de conteúdo e tráfego direcionadas para um público corporativo.</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-icon">🏷️</div>
+      <div class="case-num">6+</div>
+      <div class="case-titulo">Marcas gerenciadas — Imporiente</div>
+      <div class="case-desc">Gestão simultânea das marcas Alfacell, Casita, Impopet, Impofit, Yn'Clock e Jolyin dentro de uma importadora. Responsável por redes sociais, site, conteúdo, automação e estratégias para feiras.</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-icon">✍️</div>
+      <div class="case-num">360°</div>
+      <div class="case-titulo">Conteúdo completo — da estratégia à execução</div>
+      <div class="case-desc">Roteiros para vídeo, artigos de blog, textos para redes sociais e catálogos institucionais produzidos com foco em engajamento, conversão e identidade de marca.</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-icon">💎</div>
+      <div class="case-num">2</div>
+      <div class="case-titulo">Nichos especializados — Apollo</div>
+      <div class="case-desc">Trabalho focado para Dra. Cris (saúde/HOF) e Milele (e-commerce de joias). Estratégias distintas para public liberal e venda online de produto premium.</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-icon">🎪</div>
+      <div class="case-num">Feiras</div>
+      <div class="case-titulo">Estratégia e organização de feiras</div>
+      <div class="case-desc">Planejamento e execução de ações de marketing em feiras do setor de importação, estreitando o relacionamento com o time comercial e ampliando a visibilidade das marcas da Imporiente.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section class="marcas">
+  <div class="marcas-intro">Marcas com as quais trabalhei</div>
+  <div class="marcas-grid">
+    <div class="marca-badge">Alfacell</div>
+    <div class="marca-badge">Casita</div>
+    <div class="marca-badge">Impopet</div>
+    <div class="marca-badge">Impofit</div>
+    <div class="marca-badge">Yn'Clock</div>
+    <div class="marca-badge">Jolyin</div>
+    <div class="marca-badge">Milele</div>
+    <div class="marca-badge">Dra. Cris · HOF</div>
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section class="habilidades" id="habilidades">
+  <div>
+    <div class="section-label">Competências</div>
+    <h2 class="section-title">O que eu sei fazer</h2>
+  </div>
+  <div class="hab-grid">
+    <div class="hab-item">
+      <div class="hab-icone">📱</div>
+      <div class="hab-nome">Marketing Digital e Redes Sociais</div>
+      <div class="hab-sub">Gestão de perfis, planejamento de conteúdo, engajamento e crescimento orgânico</div>
+    </div>
+    <div class="hab-item">
+      <div class="hab-icone">✍️</div>
+      <div class="hab-nome">Copywriting e Conteúdo</div>
+      <div class="hab-sub">Textos para redes, blog, roteiro de vídeo e catálogos com foco em conversão</div>
+    </div>
+    <div class="hab-item">
+      <div class="hab-icone">🔍</div>
+      <div class="hab-nome">SEO e Analytics</div>
+      <div class="hab-sub">Otimização de conteúdo, análise de métricas e monitoramento de performance</div>
+    </div>
+    <div class="hab-item">
+      <div class="hab-icone">🎨</div>
+      <div class="hab-nome">Branding e Identidade Visual</div>
+      <div class="hab-sub">Posicionamento, identidade de marca e criação de materiais gráficos</div>
+    </div>
+    <div class="hab-item">
+      <div class="hab-icone">⚙️</div>
+      <div class="hab-nome">Automação de Marketing</div>
+      <div class="hab-sub">Fluxos automáticos, nutrição de leads e ferramentas de CRM</div>
+    </div>
+    <div class="hab-item">
+      <div class="hab-icone">📦</div>
+      <div class="hab-nome">Marketing de Produto</div>
+      <div class="hab-sub">Estratégias para lançamento, posicionamento e divulgação de produtos físicos e digitais</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div>
+    <div class="section-label">Vamos conversar</div>
+    <h2 class="section-title">Pronta para o próximo desafio</h2>
+    <p class="contato-desc">Estou em busca de novas oportunidades para aplicar minha experiência em marketing e continuar crescendo. Se você tem um projeto ou vaga interessante, me chama!</p>
+  </div>
+  <div class="contato-links">
+    <a href="mailto:manuely@email.com" class="contato-link">
+      <span>✉</span>
+      <span>manuely@email.com</span>
+    </a>
+    <a href="https://linkedin.com/in/manuelyduarte" target="_blank" class="contato-link">
+      <span>in</span>
+      <span>linkedin.com/in/manuelyduarte</span>
+    </a>
+    <a href="https://wa.me/55XX9XXXXXXXX" target="_blank" class="contato-link">
+      <span>📲</span>
+      <span>WhatsApp</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <strong>Manuely Duarte</strong> — Todos os direitos reservados</p>
+  <p>Portfólio de Marketing Digital</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.exp-item, .case-card, .hab-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
